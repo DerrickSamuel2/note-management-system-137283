@@ -1,0 +1,324 @@
+:root {
+  --primary: #1976d2;
+  --secondary: #424242;
+  --accent: #ffb300;
+  --bg: #fff;
+  --bg-alt: #f8f9fa;
+  --card-bg: #fff;
+  --border: #e0e0e0;
+  --shadow: 0 2px 12px rgba(25, 118, 210, 0.08);
+  --text: #222;
+  --muted: #757575;
+  --header-bg: #fff;
+  --footer-bg: #fafafa;
+}
+
+body, .notes-root {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, 'Segoe UI', Arial, sans-serif;
+}
+
+.notes-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background: var(--header-bg);
+  box-shadow: 0 1px 0 0 var(--border);
+  padding: 2rem 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+
+.app-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.main-content {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 24px 14px 30px 14px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.notes-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.search-bar {
+  width: 70%;
+  min-width: 220px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-alt);
+  outline: none;
+  padding: 10px 16px;
+  font-size: 1rem;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+.search-bar:focus {
+  border-color: var(--primary);
+}
+
+.notes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.35rem;
+  margin: 1.25rem 0 2.5rem 0;
+  justify-content: flex-start;
+}
+
+.note-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 16px;
+  padding: 20px 18px 16px 18px;
+  min-width: 235px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: box-shadow 0.18s;
+}
+
+.note-card:hover {
+  box-shadow: 0 8px 36px rgba(25, 118, 210, 0.10);
+}
+
+.note-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+  margin-top: 0.1rem;
+}
+
+.note-content {
+  color: var(--text);
+  font-size: 1rem;
+  min-height: 44px;
+  margin-bottom: 0.4rem;
+  word-break: break-word;
+  white-space: pre-line;
+}
+.note-meta {
+  color: var(--muted);
+  font-size: 0.98rem;
+  margin-bottom: 0.28rem;
+}
+
+.note-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.15s, transform 0.12s;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  outline: none;
+}
+
+.action-btn:active {
+  transform: translateY(2px) scale(0.98);
+  opacity: 0.92;
+}
+
+.fab {
+  position: fixed;
+  right: 46px;
+  bottom: 49px;
+  width: 62px;
+  height: 62px;
+  font-size: 2.6rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 12px 24px rgba(255, 179, 0, 0.18);
+  cursor: pointer;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.17s, box-shadow 0.13s;
+}
+
+.fab:hover {
+  background: #ffcb37;
+  box-shadow: 0 14px 36px rgba(255, 179, 0, 0.23);
+}
+
+.empty-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  color: var(--muted);
+  font-size: 1.12rem;
+  gap: 12px;
+}
+
+.footer {
+  background: var(--footer-bg);
+  color: var(--muted);
+  text-align: center;
+  padding: 16px 0 14px 0;
+  font-size: 1rem;
+  letter-spacing: 0.4px;
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(66, 66, 66, 0.17);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.22s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: #fff;
+  border-radius: 19px;
+  box-shadow: 0 4px 32px #1976d240;
+  padding: 30px 28px 20px 28px;
+  min-width: 330px;
+  max-width: 95vw;
+  min-height: 180px;
+  outline: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: popIn 0.22s;
+}
+@keyframes popIn {
+  from { transform: scale(0.94);}
+  to   { transform: scale(1);}
+}
+
+.editor-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 9px;
+  color: var(--text);
+  background: var(--bg-alt);
+  transition: border 0.16s;
+}
+
+.editor-title:focus {
+  border: 1.5px solid var(--primary);
+}
+
+.editor-content {
+  padding: 10px 12px;
+  margin-bottom: 9px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  resize: vertical;
+  color: var(--text);
+  background: var(--bg-alt);
+  min-height: 90px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border 0.17s;
+}
+
+.editor-content:focus {
+  border: 1.5px solid var(--primary);
+}
+
+.editor-error {
+  color: #d22b2b;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 14px;
+  justify-content: flex-end;
+}
+
+/* Responsive web design */
+@media (max-width: 600px) {
+  .main-content {
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+  .notes-list {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .note-card {
+    min-width: 94vw;
+    max-width: 99vw;
+    padding: 13px 10px 12px 10px;
+    font-size: 1rem;
+  }
+  .fab {
+    right: 22px;
+    bottom: 25px;
+    width: 54px;
+    height: 54px;
+    font-size: 2.1rem;
+  }
+  .modal {
+    min-width: 98vw;
+    padding: 12vw 2vw 8vw 2vw;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  background: #f9fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #ececec;
+  border-radius: 6px;
+}
